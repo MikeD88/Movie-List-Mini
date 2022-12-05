@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - $HOME/docker/volumes/postgres:/var/lib/postgres
+      # - $sdi-blended-workshops-docker-scaffold/api/migrations/202221202173228_authors.js
+    networks:
+      - my_network
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=docker_workshop
+
+  server:
+    build: ./api
+    ports:
+      - "3001:3001"
+    networks:
+      - my_network
+    environment:
+      - DB_CONNECTION_STRING=postgres://postgres:docker@db:5432/docker_workshop
+    depends_on:
+      - db
+
+  frontend:
+    build: ./movie_list
+    ports:
+      - "3000:3000"
+    networks:
+      - my_network
+    depends_on:
+      - server
+
+networks:
+  my_network:
+    driver: bridge

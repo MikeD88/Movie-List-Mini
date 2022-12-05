@@ -1,0 +1,22 @@
+{
+  "name": "knex_server",
+  "version": "1.0.0",
+  "main": "knexfile.js",
+  "scripts": {
+    "start": "nodemon ./knex/src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "postgresql": "^0.0.1"
+  },
+  "description": ""
+}
